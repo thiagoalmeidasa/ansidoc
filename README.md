@@ -31,7 +31,9 @@ variables:
 ---
 
 github_account: <your-role-github-account-username>
+github_repo: <your-role-github-repo-name>
 todos: [] # (optional) list of todos to print in your README file
+required_variables [] # (optional) list of required variables for your role
 ```
 
 ### cli

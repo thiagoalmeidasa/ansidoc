@@ -2,8 +2,6 @@
 
 from setuptools import setup, find_packages
 from os import path
-from m2r import M2R
-
 
 PACKAGE_NAME = 'ansidoc'
 REPOSITORY_VERSION_FILE = 'VERSION'
@@ -17,9 +15,8 @@ PACKAGE_VERSION_FILE_HEADER = """\
 
 def get_long_description(file):
     """Get the long description from the README file."""
-    m2r = M2R()
     with open(file, encoding='utf-8') as f:
-        return m2r(f.read())
+        return f.read()
 
 
 def get_version(file):
@@ -37,7 +34,6 @@ def update_software_version(package, header, version):
 VERSION = get_version(REPOSITORY_VERSION_FILE)
 update_software_version(PACKAGE_NAME, PACKAGE_VERSION_FILE_HEADER, VERSION)
 
-
 setup(
     name=PACKAGE_NAME,
 
@@ -45,7 +41,6 @@ setup(
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
     version=VERSION,
-
     description='Manage ansible role documentation',
     long_description=get_long_description(LONG_DESCRIPTION_FILE),
 
@@ -72,7 +67,6 @@ setup(
         'Topic :: Software Development :: Build Tools',
         'Topic :: Software Development :: Documentation',
 
-
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: MIT License',
 
@@ -83,13 +77,12 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-
     keywords=["ansible", "documentation generation"],
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages(exclude=['contrib', 'docs', 'tests',
-                                    'env', 'build']),
+    packages=find_packages(
+        exclude=['contrib', 'docs', 'tests', 'env', 'build']),
 
     # Alternatively, if you want to distribute just a my_module.py, uncomment
     # this:
@@ -100,7 +93,6 @@ setup(
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=['jinja2', 'PyYaml', 'tabulate'],
-
     # setup_requires=['m2r'],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
@@ -117,7 +109,6 @@ setup(
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-
     package_data={
         PACKAGE_NAME: ['templates/*'],
     },

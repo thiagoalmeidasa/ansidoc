@@ -43,12 +43,6 @@ class Ansidoc():
         docs/*.yml.
         """
 
-        rolename = os.path.basename(os.path.abspath(rolepath))
-
-        if self.verbose:
-            print("Generating doc for role '%s'..." % rolename)
-            print("Current rolepath is: '%s'" % rolepath)
-
         # create symlink if needed
         if self.target:
             self._make_role_symlink(rolepath)
@@ -56,6 +50,13 @@ class Ansidoc():
         # load role meta/main.yml
         meta_vars = helpers.load_yml_file(
             os.path.join(rolepath, "meta/main.yml"), self.verbose)
+
+        rolename = meta_vars['galaxy_info']['role_name']
+
+        if self.verbose:
+            print("Generating doc for role '%s'..." % rolename)
+            print("Current rolepath is: '%s'" % rolepath)
+
 
         # load role docs/*.yml
         docs_vars = helpers.load_yml_files(
